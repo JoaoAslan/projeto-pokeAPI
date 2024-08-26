@@ -13,39 +13,49 @@
     <section class="content">
         <div class="content-header">
             <div class="content-header-search">
-                <search>, 
+                <search>
                     <input type="search">
                 </search>
                 <label>search-info</label>
             </div>
         </div>
         <div class="content-filters">
-            <div class="content-filters">
-                <div class="filter-by-type-container">
-                    <label>Filer by type</label>
-                    <div class="types-container"></div>
-                </div>
-                <div class="filber-by-gen-container">
-                    <label>Filter by gen</label>
-                    <select class="drop-down-gen">
-                        <!-- OPTIONS HERE -->
-                    </select>
-                </div>
+            <div class="filter-type">
+                <label>Filer by type</label>
+                <div class="types"></div>
             </div>
-
-            <div>
-                <label>pokemon-name</label>
-                <label>pokemon-types</label>
-            </div>
-            <div>
-                <label>#pokemon-id</label>
-                <img class="background-pokemon-img">
-                <img class="pokemon-gif">
+            <div class="filter-gen">
+                <label>Filter by gen</label>
+                <select class="drop-down-gen">
+                    <!-- OPTIONS HERE -->
+                </select>
             </div>
         </div>
+        <div class="main-content">
+            <div class="box-pokemon">
+                <div class="pokemon-info">
+                    <label>pokemon-name</label>
+                    <label>pokemon-types</label>
+                </div>
+                <div class="box-img-pokemon">
+                    <img class="gif-pokemon">
+                    <label>pokemon-id</label>
+                <img class="background-box-pokemon">
+                </div>
+            </div>
+        </div>
+        <div class="paginator"></div>
     </section>
     <footer>
-        <label>Copyrite é meu (do Aslan)</label>
+        <img class="pokemon-logo">
+        <div class="centered-footer">
+            <label>Coperite do Aslan</label>
+            <a class="github-link">GitHub</a>
+        </div>
+        <div class="source-box">
+            <label>Source</label>
+            <a class="repository-link"></a>
+        </div>
     </footer>
 </body>
 </html>
