@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0; 
+}
+
+body {
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+    background-color: cornflowerblue;
+}
+
+header {
+    display: flex;
+    justify-content:space-evenly;
+}
+
+/* colocar uma altura/largura minima */
+.pokemon_logo {
+    width: 8%;
+    height: min-content;
+}
