@@ -1,61 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Pokedex</title>
 </head>
+
 <body>
-    <header>
-        <img class="pokeapi-logo" src="" alt="Logo do PokeApi">
-    </header>
-    <section class="content">
-        <div class="content-header">
-            <div class="content-header-search">
-                <search>
-                    <input type="search">
-                </search>
-                <label>search-info</label>
-            </div>
+    <div class="container">
+        <div class="header">
+            <label>Pokédex</label>
+            <input type="search">
         </div>
-        <div class="content-filters">
-            <div class="filter-type">
-                <label>Filer by type</label>
-                <div class="types"></div>
-            </div>
-            <div class="filter-gen">
-                <label>Filter by gen</label>
-                <select class="drop-down-gen">
-                    <!-- OPTIONS HERE -->
-                </select>
-            </div>
-        </div>
-        <div class="main-content">
-            <div class="box-pokemon">
-                <div class="pokemon-info">
-                    <label>pokemon-name</label>
-                    <label>pokemon-types</label>
-                </div>
-                <div class="box-img-pokemon">
-                    <img class="gif-pokemon">
-                    <label>pokemon-id</label>
-                <img class="background-box-pokemon">
+        <div class="content">
+            <div class="card">
+                <div class="card-info">
+                    <label>#pokemon_id</label>
+                    <label>#pokemon_name</label>
+                    <div class="card-type">
+                        
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="paginator"></div>
-    </section>
-    <footer>
-        <img class="pokemon-logo">
-        <div class="centered-footer">
-            <label>Coperite do Aslan</label>
-            <a class="github-link">GitHub</a>
+        <button>Carregar mais</button>
+        <div class="footer">
+            <img>
+            <div>
+                <label>Feito por</label>
+                <a>Aslan</a>
+            </div>
+            <a>Source</a>
         </div>
-        <div class="source-box">
-            <label>Source</label>
-            <a class="repository-link"></a>
-        </div>
-    </footer>
+    </div>
 </body>
+
 </html>
