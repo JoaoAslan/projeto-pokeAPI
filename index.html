@@ -5,23 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     <title>Pokedex</title>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <label>Pokédex</label>
-            <input type="search">
+            <label class="title">Pokédex</label>
+            <div class="search">
+                <span class="search-icon material-symbols-rounded">search</span>
+                <input class="searchbar" type="type" placeholder="Qual Pokémon você está procurando?">
+                <span id="" class="close-icon material-symbols-rounded">close</span>
+            </div>
         </div>
         <div class="content">
             <div class="card">
                 <div class="card-info">
                     <label>#pokemon_id</label>
                     <label>#pokemon_name</label>
-                    <div class="card-type">
-                        
-                    </div>
+                    <div class="card-type"></div>
                 </div>
             </div>
         </div>
@@ -30,7 +33,7 @@
             <img>
             <div>
                 <label>Feito por</label>
-                <a>Aslan</a>
+                <a>JoaoAslan</a>
             </div>
             <a>Source</a>
         </div>
