@@ -136,3 +136,27 @@ body {
   		'opsz' 20;
 	margin-right: 12px;
 }
+
+.content {
+	display: flex;
+	flex-direction: column;
+	margin: 0px 4%;
+}
+
+.content-cards {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	align-items: end;
+}
+
+.card {
+	height: 150px;
+	background-color: gray;
+	color: white;
+}
+
+.card:hover {
+	height: 200px;
+	transition-duration: 1s;
+}
