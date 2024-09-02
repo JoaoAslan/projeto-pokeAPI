@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
 
+/* CSS styles reset */
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -43,159 +45,102 @@ table {
 	border-spacing: 0;
 }
 
-/* /\ CSS RESET /\ */
+/* Main containers styles */
 
-/* body default settings */
-body {
-	height: 100vh; width: 100vw;
+body, 
+.container-main,
+.container-header,
+.container-content {
+	height: 100%;
+	width: 100%;
+
 }
 
-.container {
-	display: flex;
-	flex-direction: column;
-	min-height: 100%; 
+.body, .container-main {
+	min-height: 100vh;
+}
+
+body {
+	/* body default settings */
+	font-size: 14px;
 	color: black;
-}
 
-/* background customization */
-body {
+	/* background customization */
 	background-color: whitesmoke;
 	background-image: url("imgs/pokeicon.svg");
 	background-repeat: no-repeat;
-	background-position: center center;
+	background-position: center;
 	background-size: 90vh 100vw;
+	background-attachment: fixed;
 }
 
-.header {
-	width: auto; height: 10%;
-	margin: 1% 4%;
+.container-main {
+	box-sizing: border-box;
+  	overflow: hidden;
+	padding: 2% 5%;
 }
 
-.title {
-	font-size: 32px;
+.container-header {
+	height: 100px;
+}
+
+.container-content {
+	display: flex;
+	flex-direction: column;
+	margin-top: 35px;
+}
+
+/* Header container style */
+
+.header-title, .searchbar {
 	font-family: "Inter", sans-serif;
   	font-optical-sizing: auto;
-  	font-weight: 700;
   	font-style: normal;
+}
+
+.header-title {
+	font-size: 32px;
+	font-weight: 700;
+}
+
+.header-search {
+	display: flex;
+	align-items: center;
+	height: 45%;
+	margin-top: 20px;
+	padding: 0 14px 0 14px;
+	border-radius: 12px;
+	box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.08);
+	background-color: #E9EAEC;
+	transition-duration: .2s;
+}
+
+.searchbar {
+	width: 100%; height: 100%;
+	padding-left: 10px;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	color: rgba(0,0,0,0.7);
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.material-symbols-rounded {
+	font-variation-settings:
+  		'FILL' 0,
+  		'wght' 500,
+  		'GRAD' 0,
+  		'opsz' 20;
 }
 
 .searchbar::placeholder,
 .search-icon,
 .close-icon {
+	text-align: center;
 	color: rgba(0,0,0,0.45);
 }
 
-.searchbar::placeholder {
-	text-align: center;
-}
-
-.search:hover {
+.header-search:hover {
 	transform: scale(1.015);
-}
-
-.search {
-	display: flex;
-	align-items: center;
-	background-color: #E9EAEC;
-	border-radius: 12px;
-	width: auto; height: 42%;
-	min-height: 45px;
-	margin-top: 1%;
-	transition-duration: .2s;
-	box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.08);
-}
-
-.search-icon {
-	font-variation-settings:
-  		'FILL' 0,
-  		'wght' 500,
-  		'GRAD' 0,
-  		'opsz' 20;
-	margin-left: 12px;
-}
-
-.searchbar {
-	font-family: "Inter", sans-serif;
-	font-optical-sizing: auto;
-	font-weight: 500;
-	font-style: normal;
-	font-size: 16px;
-	border: none;
-	outline: none;
-	background-color: transparent;
-	color: rgba(0,0,0,0.7);
-	width: 100%; height: 100%;
-	padding: 0px 1%;
-}
-
-.close-icon {
-	font-variation-settings:
-  		'FILL' 0,
-  		'wght' 500,
-  		'GRAD' 0,
-  		'opsz' 20;
-	margin-right: 12px;
-}
-
-.content {
-	display: flex;
-	flex-direction: column;
-	margin: 2% 4%;
-}
-
-.content-cards {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	row-gap: 45px;
-	column-gap: 30px;
-	align-items: flex-end;
-}
-
-.card:hover {
-	height: 200px;
-	scale: calc(1.03);
-	border-radius: 12px;
-	.poke-img {
-	 	width: 100%; height: auto;
-		margin-bottom: 12%;
-		filter:none;
-	}
-}
-
-.card {
-	display: flex;
-	flex-direction: row;
-	background-color: #ffa860;
-	color: white;
-	height: 150px;
-	width: auto; min-width: 400px;
-	border-radius: 8px;
-	transition-duration: 1s;
-
-	background-image: url("imgs/pokeicon.svg");
-	background-repeat: no-repeat;
-	background-position: right center;
-	background-size: 40%;
-
-	box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.30);
-}
-
-.card-info {
-	display: flex;
-	flex-direction: column;
-	width: 60%;
-}
-
-.card-img {
-	display: flex;
-	align-items: flex-end;
-	justify-content: center;
-	width: 40%;
-}
-
-.poke-img {
-	filter: grayscale();
-	width: 80%; min-width: 150px;
-	margin-bottom: 6%;
-	transition-duration: 0.8s;
 }
