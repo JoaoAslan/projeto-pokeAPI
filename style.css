@@ -21,6 +21,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	text-decoration: none;
 }
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -53,11 +54,11 @@ body,
 .container-content {
 	height: 100%;
 	width: 100%;
-
 }
 
 .body, .container-main {
 	min-height: 100vh;
+	min-width: 550px;
 }
 
 body {
@@ -79,13 +80,13 @@ body {
 	flex-direction: column;
 	box-sizing: border-box;
   	overflow: hidden;
-	padding: 2% 5%;
+	padding: 3% 7%;
 	transition: ease all .75s;
 }
 
 @media screen and (min-width: 2200px) {
 	.container-main {
-		padding: 2% 15% 0% 15%;
+		padding: 3% 18% 0% 18%;
 	}
 }
 
@@ -96,7 +97,7 @@ body {
 .container-content {
 	display: flex;
 	flex-direction: column;
-	margin-top: 35px;
+	margin-top: 50px;
 	flex: 1;
 }
 
@@ -109,7 +110,7 @@ body {
 }
 
 .header-title {
-	font-size: 32px;
+	font-size: 40px;
 	font-weight: 700;
 }
 
@@ -171,44 +172,42 @@ body {
 	margin-bottom: 30px;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1700px) {
 	.content-cards {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
 	.content-cards {
 		grid-template-columns: 1fr;
-	}
-}
-
-.card-box:hover {
-	height: 225px;
-	filter: saturate(200%);
-	.card-info {
-		padding-left: 40px;
-		transform: scale(1.1);
 	}
 }
 
 .card-box {
 	display: flex;
 	flex-direction: row;
-	width: 100%; height: 175px;
+	align-items: center;
+	justify-content: space-between;
+
+	height: 175px;
 	width: 100%; max-width: 600px;
-	border-radius: 10px;
-	background-color: #ffa860;
+	border-radius: 8px;
+	box-sizing: border-box;
+	padding: 25px;
+	
 	transition-duration: 0.5s;
+	
+	background-color: #ffa860;
+	background-image: url("imgs/pokeicon.svg");
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-size: 40%;
 }
 
 .card-info {
 	display: flex;
 	flex-direction: column;
-	align-self: center;
-	width: 100%;
-	height: auto;
-	padding-left: 25px;
 	
 	font-family: "Inter", sans-serif;
 	font-optical-sizing: auto;
@@ -216,14 +215,26 @@ body {
 	transition-duration: .5s;
 }
 
+.card-box-img {
+	filter: grayscale(1);
+	height: 175px;
+	margin-top: -75px;
+	transition-duration: 0.5s;
+}
+
+.card-img {
+	width: 100%;
+	height: 100%;
+}
+
 .card-id {
-	font-size: 16px;
-	font-weight: 600;
-	color: rgba(0, 0, 0, 0.75);
+	font-size: 18px;
+	font-weight: 700;
+	color: rgba(0, 0, 0, 0.35);
 }
 
 .card-name {
-	font-size: 38px;
+	font-size: 36px;
 	font-weight: 700;
 	margin-top: 3px;
 	color: white;
@@ -243,10 +254,17 @@ body {
 	height: 36px;
 	border-radius: 4px;
 	padding: 0px 10px 0px 8px;
+	
 	font-size: 16px;
-	font-weight: 300;
+	font-weight: 400;
 	color: white;
 	background-color: darkgray;
+}
+
+.card-type-icon {
+	height: 18px;
+	width: 18px;
+	margin-right: 6px;
 }
 
 /* For testing */
@@ -259,13 +277,14 @@ body {
 	background-color: #6c8cc4;
 }
 
-.card-type-icon {
-	height: 18px;
-	width: 18px;
-	margin-right: 6px;
-}
-
-.card-box-img {
-	width: 100%;
-	height: 100%;
+.card-box:hover {
+	height: 215px;
+	border-radius: 12px;
+	.card-box-img {
+		margin-top: 0px;
+		filter: none;
+	}
+	.card-info {
+		transform: scale(1.07);
+	}
 }
