@@ -169,7 +169,7 @@ body {
 	grid-template-columns: repeat(3, 1fr);
 	grid-auto-rows: minmax(175px, auto);
 	grid-gap: 40px;
-	margin-bottom: 30px;
+	margin-bottom: 60px;
 }
 
 @media screen and (max-width: 1700px) {
@@ -203,6 +203,7 @@ body {
 	background-repeat: no-repeat;
 	background-position: right center;
 	background-size: 40%;
+	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card-info {
@@ -287,4 +288,27 @@ body {
 	.card-info {
 		transform: scale(1.07);
 	}
+}
+
+.load-cards {
+	align-self: center;
+	border: none;
+	width: 50%;
+	height: 40px;
+	min-width: 300px;
+	max-width: 700px;
+	border-radius: 4px;
+	
+	font-family: "Inter", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-size: 18px;
+	background-color: #6da4b2;
+	color: white;
+
+	transition-duration: 0.2s;
+}
+
+.load-cards:hover {
+	transform: scale(1.015);
 }
