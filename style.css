@@ -198,7 +198,6 @@ body {
 	
 	transition-duration: 0.5s;
 	
-	background-color: #ffa860;
 	background-image: url("imgs/pokeicon.svg");
 	background-repeat: no-repeat;
 	background-position: right center;
@@ -268,14 +267,76 @@ body {
 	margin-right: 6px;
 }
 
-/* For testing */
-.card-type-one {
-	background-color: #ff8039;
+.bug {
+    background: #83ac24;
 }
 
-/* For testing */
-.card-type-two {
-	background-color: #6c8cc4;
+.dark {
+    background: #45434b;
+}
+
+.dragon {
+    background: #1260af;
+}
+
+.electric {
+    background: #dfc63b;
+}
+
+.fire {
+    background: #ff8039;
+}
+
+.fairy {
+    background: #cf65c6;
+}
+
+.fighting {
+    background: #b8314c;
+}
+
+.flying {
+    background: #6c8cc4;
+}
+
+.ghost {
+    background: #505daa;
+}
+
+.grass {
+    background: #53ad4c;
+}
+
+.ground {
+    background: #ce7244;
+}
+
+.ice {
+    background: #7de2d1;
+}
+
+.normal {
+    background: #8f918e;
+}
+
+.poison {
+    background: #ae59c5;
+}
+
+.psychic {
+    background: #f37974;
+}
+
+.rock {
+    background: #bdab6b;
+}
+
+.steel {
+    background: #5695A3;
+}
+
+.water {
+    background: #2e8cd5;
 }
 
 .card-box:hover {
