@@ -1,5 +1,5 @@
 
-function createCard(name, id, img, types) {
+function createCard(name, id, img, types, audio) {
     const container = document.querySelector(".content-cards");
 
     const card_box = createDiv("card-box");
@@ -15,15 +15,24 @@ function createCard(name, id, img, types) {
     card_box_img.appendChild(card_img);
 
     const card_id = createLabel("card-id", `#${id.toString().padStart(2, '0')}`);
-    const card_name = createLabel("card-name", `${upperFirst(name)}`);
+    const card_name = createLabel("card-name", `${formatName(name)}`);
+    
+    const card_audio = createAudio("card-audio", `${audio}`);
+    card_audio.volume = 0.2;
+    card_box.addEventListener("click", () => card_audio.play());
 
     card_info.appendChild(card_id);
     card_info.appendChild(card_name);
     card_info.appendChild(card_type_box);
+    card_info.appendChild(card_audio);
+
+    if (name.length > 10) {
+        card_name.style.fontSize = '24px';
+    }
     
     for (let i=0; i<types.length; i++) {
         const card_type = createDiv(`card-type ${types[i].type.name}`);
-        const card_type_text = createLabel("card-type-text", `${upperFirst(types[i].type.name)}`);
+        const card_type_text = createLabel("card-type-text", `${formatName(types[i].type.name)}`);
         const card_type_icon = createImg("card-type-icon", `https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/5781623f147f1bf850f426cfe1874ba56a9b75ee/icons/${types[i].type.name}.svg`, `${types[i].type.name}`);
         card_type.appendChild(card_type_icon);
         card_type.appendChild(card_type_text);
@@ -92,6 +101,13 @@ function createCard(name, id, img, types) {
     }
 }
 
+function removeCards() {
+    const cards = document.querySelectorAll(".card-box");
+    cards.forEach(card => {
+        card.remove();
+    });
+}
+
 function createDiv(className) {
     const div = document.createElement('div');
     div.className = className;
@@ -113,37 +129,94 @@ function createImg(className, src, alt) {
     return img;
 }
 
-function upperFirst(text) {
-    return text[0].toUpperCase() + text.substring(1);
+function createAudio(className, src) {
+    const audio = document.createElement('audio');
+    audio.className = className;
+    audio.src = src;
+    return audio;
 }
 
-let loadedPokemons = [];
-let lastPokemonIndex = 0;
+function formatName(name) {
+    return name.split('-').map(word => 
+        word.charAt(0).toUpperCase() + word.substring(1).toLowerCase()
+    ).join(' ');
+}
 
+let lastPokemonBeforeSearch = 0;
+let lastPokemonIndex = 0;
 async function loadPokemon(n) {
     for (let i=0; i<n; i++) {
-        const nextPokemonIndex = lastPokemonIndex + 1;
+        let nextPokemonIndex = lastPokemonIndex + 1;
         await displayPokemon(nextPokemonIndex);
         lastPokemonIndex = nextPokemonIndex;
+        lastPokemonBeforeSearch = lastPokemonIndex;
     }
 }
 
 function getPokemon(id) {
     return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then((data) => data.json())
-        .catch((err) => console.log(`An Error occured: ${err}`));
+        .catch((err) => {
+            throw new Error(`API data error, ${err}`)});
 }
 
 async function displayPokemon(id) {
-    const data = await getPokemon(id);
-    console.log(data);
-        if (!loadedPokemons.includes(data.id)) {
-            loadedPokemons.push(data.id);
-            createCard(data.name, data.id, data.sprites.other["official-artwork"].front_default, data.types);
-        } else {
-            console.log(`Pokemon #${id.toString().padStart(2, '0')} já foi carregado...`)
-        }
+    try {
+        const data = await getPokemon(id);
+        createCard(data.name, data.id, data.sprites.other["official-artwork"].front_default, data.types, data.cries.latest);
+    } catch(e) {
+        console.log(`Display error on ID ${id}, ${e}`);
+    }
 }
-// console.log(loadedPokemons);
-document.onload = loadPokemon(9),
-document.querySelector("button").addEventListener('click', function() {loadPokemon(400)});
+
+async function findAllPokemons() {
+    let allPokemons = [];
+    for(let i=1; i<=1025; i++) {
+        try {
+            const data = await getPokemon(i);
+            allPokemons.push(data);
+        } catch (e) {
+            console.log(`Error to find all Pokemons on id ${i}, ${e}`);
+        }
+    }
+    return allPokemons;
+}
+
+const clear = document.querySelector(".close-icon");
+function searchPokemon(input, pokemons) {
+    const data = input.value.toLowerCase();
+    clear.style.display = 'none';
+    removeCards();
+    if (data.length >= 1) {
+        clear.style.display = '';
+        clear.addEventListener("click", () => input.value = '');
+        for (let i=0; i<pokemons.length; i++) {
+            let name = pokemons[i].name;
+            if (name.indexOf(data) > -1) {
+                displayPokemon(pokemons[i].id);
+            }
+        }
+    } else {
+        refreshPage();
+        
+    }
+}
+
+function refreshPage() {
+    lastPokemonIndex = 0;
+    loadPokemon(lastPokemonBeforeSearch);
+    lastPokemonBeforeSearch = 0;
+}
+
+async function main() {
+    document.onload = loadPokemon(9);
+    document.querySelector("button").addEventListener('click', function() {loadPokemon(27)});
+    clear.style.display = 'none';
+    
+    const allPokemons = await findAllPokemons();
+    console.log("All pokemons loaded!");
+    const input = document.querySelector(".searchbar");
+    input.addEventListener("keyup", () => searchPokemon(input, allPokemons));
+}
+
+main();
