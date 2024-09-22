@@ -54,10 +54,19 @@ function searchPokemon(search) {
             const card = document.getElementById(pokemon_data.name);
             const pokemonName = pokemon_data.name;
             const formattedName = formatName(pokemonName).toLowerCase();
-            if (formattedName.indexOf(search.toLowerCase()) > -1) {
-                card.style.display = '';
+            const pokemonId = pokemon_data.id;
+            if (!isNaN(parseFloat(search))) {
+                if (Number(pokemonId) === Number(search)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
             } else {
-                card.style.display = 'none';
+                if (formattedName.indexOf(search.toLowerCase()) > -1) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
             }
         })
     } else {
@@ -280,7 +289,6 @@ function buttonEventClick() {
 
 function searchEventInput() {
     const delIcon = document.querySelector('.close-icon');
-    console.log(delIcon);
     delIcon.style.display = 'none';
     const searchbar = document.querySelector('.searchbar');
     searchbar.addEventListener('input', e => {
