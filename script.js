@@ -25,10 +25,25 @@ function loadPokemons(n) {
     }
 }
 
+async function loadFirstPokemons() {
+    loadingPage();
+    for(let i=1; i<=27; i++) {
+        const pokemon_data = await getPokemon(i);
+        if (!(pokemon_data === undefined)) {
+            loadedPokemons.push(pokemon_data);
+        }
+    }
+    finishLoadingPage();
+}
+
 let loadedPokemons = [];
 async function loadAllPokemons() {
     loadingPage();
-    for(let i=1; i<=1025; i++) {
+    const loaded = loadedPokemons.length;
+    if (loaded === 0) {
+        loaded++;
+    }
+    for(let i=loaded; i<=1025; i++) {
         const pokemon_data = await getPokemon(i);
         if (!(pokemon_data === undefined)) {
             loadedPokemons.push(pokemon_data);
@@ -141,8 +156,7 @@ function createCard(pokemon_data) {
 
     const container = document.querySelector('.content-cards');
 
-    const card_box = document.createElement('div');
-    card_box.className = "card-box";
+    const card_box = createDiv("card-box");
     card_box.id = name;
 
     const card_info = createDiv('card-info');
@@ -279,7 +293,7 @@ function createAudio(className, src) {
 
 let startLoad = 9;
 function buttonEventClick() {
-    const loads = 27;
+    const loads = 36;
     const btn = document.querySelector('.load-cards');
     btn.addEventListener('click', () => {
         loadPokemons(loads);
@@ -299,10 +313,11 @@ function searchEventInput() {
 
 async function main() {
     try {
-        await loadAllPokemons();
+        await loadFirstPokemons();
         loadPokemons(startLoad);
         buttonEventClick();
         searchEventInput();
+        await loadAllPokemons();
     } catch (e){
         console.log(`An error occured: ${e}`);
     }
